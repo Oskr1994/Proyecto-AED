@@ -1,0 +1,64 @@
+package vista;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class frmMenuPrincipal extends JFrame {
+
+    public frmMenuPrincipal() {
+        setTitle("Sistema de Citas Médicas");
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // pantalla grande
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // ===== BARRA DE MENÚ =====
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu menuMantenimiento = new JMenu("Mantenimiento");
+        JMenu menuRegistro = new JMenu("Registro");
+        JMenu menuConsulta = new JMenu("Consulta");
+        JMenu menuReporte = new JMenu("Reporte");
+        JMenu menuAyuda = new JMenu("Ayuda");
+
+        menuBar.add(menuMantenimiento);
+        menuBar.add(menuRegistro);
+        menuBar.add(menuConsulta);
+        menuBar.add(menuReporte);
+        menuBar.add(menuAyuda);
+
+        // ===== SUBMENÚS =====
+        JMenuItem itemPaciente = new JMenuItem("Paciente");
+        JMenuItem itemMedico = new JMenuItem("Médico");
+        JMenuItem itemConsultorio = new JMenuItem("Consultorio");
+
+        menuMantenimiento.add(itemPaciente);
+        menuMantenimiento.add(itemMedico);
+        menuMantenimiento.add(itemConsultorio);
+
+        // ===== IMAGEN DE FONDO =====
+        ImageIcon icon = new ImageIcon(
+            getClass().getResource("/imagenes/fondo.jpg")
+        );
+
+        JLabel lblFondo = new JLabel(icon);
+        lblFondo.setHorizontalAlignment(JLabel.CENTER);
+        add(lblFondo);
+
+        // ===== EVENTOS =====
+        itemPaciente.addActionListener(e -> {
+            new frmPaciente().setVisible(true);
+        });
+
+        itemMedico.addActionListener(e -> {
+            new frmMedico().setVisible(true);
+        });
+
+        itemConsultorio.addActionListener(e -> {
+            new frmConsultorio().setVisible(true);
+        });
+    }
+
+    public static void main(String[] args) {
+        new frmMenuPrincipal().setVisible(true);
+    }
+}

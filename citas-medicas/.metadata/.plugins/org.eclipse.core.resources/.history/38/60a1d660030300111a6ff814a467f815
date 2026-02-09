@@ -1,0 +1,74 @@
+package vista;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Toolkit;
+
+public class frmMenuPrincipal extends JFrame {
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    frmMenuPrincipal frame = new frmMenuPrincipal();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public frmMenuPrincipal() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Personal\\Pictures\\descarga.jpg"));
+
+        setTitle("SISTEMA DE CITAS MÉDICAS");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(718, 527);
+        setLocationRelativeTo(null);
+        getContentPane().setLayout(null);
+
+        // ========= IMAGEN DE FONDO =========
+        ImageIcon icon = new ImageIcon(
+                getClass().getResource("/imagenes/fondo.jpg"));
+        Image img = icon.getImage().getScaledInstance(450, 350, Image.SCALE_SMOOTH);
+        JLabel lblFondo = new JLabel(new ImageIcon(img));
+        lblFondo.setBounds(0, 0, 450, 350);
+        lblFondo.setLayout(null);
+        setContentPane(lblFondo);
+        // ==================================
+
+        // -------- TÍTULO ----------
+        JLabel lblTitulo = new JLabel("CLÍNICA SAN SALUD");
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        lblTitulo.setBounds(120, 20, 250, 30);
+        lblFondo.add(lblTitulo);
+
+        // -------- BOTONES ----------
+        JButton btnMantenimiento = new JButton("MANTENIMIENTO");
+        btnMantenimiento.setBounds(130, 70, 180, 30);
+        lblFondo.add(btnMantenimiento);
+
+        JButton btnCitas = new JButton("REGISTRO DE CITAS");
+        btnCitas.setBounds(130, 110, 180, 30);
+        lblFondo.add(btnCitas);
+
+        JButton btnConsultas = new JButton("CONSULTAS");
+        btnConsultas.setBounds(130, 150, 180, 30);
+        lblFondo.add(btnConsultas);
+
+        JButton btnReportes = new JButton("REPORTES");
+        btnReportes.setBounds(130, 190, 180, 30);
+        lblFondo.add(btnReportes);
+
+        JButton btnAyuda = new JButton("AYUDA");
+        btnAyuda.setBounds(130, 230, 180, 30);
+        lblFondo.add(btnAyuda);
+    }
+}

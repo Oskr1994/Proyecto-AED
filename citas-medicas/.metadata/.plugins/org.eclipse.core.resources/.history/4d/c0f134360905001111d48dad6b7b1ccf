@@ -1,0 +1,113 @@
+package vista;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class frmMenuPrincipal extends JFrame {
+
+    private JLabel lblFondo;
+
+    public frmMenuPrincipal() {
+        setTitle("Sistema de Citas Médicas");
+        setSize(712, 611);          // ventana mediana
+        setLocationRelativeTo(null); // centrada
+        setResizable(false);         // opcional
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout());
+
+        // ================= BARRA DE MENÚ =================
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu menuMantenimiento = new JMenu("Mantenimiento");
+        JMenu menuRegistro = new JMenu("Registro");
+        JMenu menuConsulta = new JMenu("Consulta");
+        JMenu menuReporte = new JMenu("Reporte");
+        JMenu menuAyuda = new JMenu("Ayuda");
+
+        menuBar.add(menuMantenimiento);
+        menuBar.add(menuRegistro);
+        menuBar.add(menuConsulta);
+        menuBar.add(menuReporte);
+        menuBar.add(menuAyuda);
+
+        // ================= SUBMENÚS =================
+        JMenuItem itemPaciente = new JMenuItem("Paciente");
+        JMenuItem itemMedico = new JMenuItem("Médico");
+        JMenuItem itemConsultorio = new JMenuItem("Consultorio");
+
+        JMenuItem itemRegistroCitas = new JMenuItem("Registro de Citas");
+
+        JMenuItem itemConsultaCitas = new JMenuItem("Consultar Citas");
+
+        JMenuItem itemReportes = new JMenuItem("Reportes de Citas");
+
+        JMenuItem itemAyuda = new JMenuItem("Acerca del Sistema");
+
+        // Agregar submenús
+        menuMantenimiento.add(itemPaciente);
+        menuMantenimiento.add(itemMedico);
+        menuMantenimiento.add(itemConsultorio);
+
+        menuRegistro.add(itemRegistroCitas);
+        menuConsulta.add(itemConsultaCitas);
+        menuReporte.add(itemReportes);
+        menuAyuda.add(itemAyuda);
+
+        // ================= PANEL FONDO =================
+        JPanel panelFondo = new JPanel() {
+            Image fondo = new ImageIcon(
+                getClass().getResource("/imagenes/fondo.jpg")
+            ).getImage();
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(
+                    fondo,
+                    0,
+                    0,
+                    getWidth(),
+                    getHeight(),
+                    this
+                );
+            }
+        };
+
+        panelFondo.setLayout(new BorderLayout());
+        getContentPane().add(panelFondo, BorderLayout.CENTER);
+
+        // ================= EVENTOS =================
+        itemPaciente.addActionListener(e ->
+            new frmPaciente().setVisible(true)
+        );
+
+        itemMedico.addActionListener(e ->
+            new frmMedico().setVisible(true)
+        );
+
+        itemConsultorio.addActionListener(e ->
+            new frmConsultorio().setVisible(true)
+        );
+
+        itemRegistroCitas.addActionListener(e ->
+            new frmRegistroCitas().setVisible(true)
+        );
+
+        itemConsultaCitas.addActionListener(e ->
+            new frmConsultaCitas().setVisible(true)
+        );
+
+        itemReportes.addActionListener(e ->
+            new frmReporteCitas().setVisible(true)
+        );
+
+        itemAyuda.addActionListener(e ->
+            new frmAyuda().setVisible(true)
+        );
+    }
+
+    public static void main(String[] args) {
+        new frmMenuPrincipal().setVisible(true);
+    }
+}

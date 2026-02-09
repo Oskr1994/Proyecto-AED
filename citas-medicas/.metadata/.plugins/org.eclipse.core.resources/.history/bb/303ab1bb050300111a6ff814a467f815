@@ -1,0 +1,64 @@
+package vista;
+
+import java.awt.EventQueue;
+import javax.swing.*;
+import java.awt.Font;
+import java.awt.Image;
+
+public class frmMenuPrincipal extends JFrame {
+
+    private JPanel contentPane;
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                frmMenuPrincipal frame = new frmMenuPrincipal();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public frmMenuPrincipal() {
+        setTitle("SISTEMA DE CITAS MÉDICAS");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 900, 600);
+
+        // ========= BARRA DE MENÚ =========
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu menuMantenimiento = new JMenu("MANTENIMIENTO");
+        JMenu menuRegistro = new JMenu("REGISTRO DE CITAS");
+        JMenu menuConsultas = new JMenu("CONSULTAS");
+        JMenu menuReportes = new JMenu("REPORTES");
+        JMenu menuAyuda = new JMenu("AYUDA");
+
+        menuBar.add(menuMantenimiento);
+        menuBar.add(menuRegistro);
+        menuBar.add(menuConsultas);
+        menuBar.add(menuReportes);
+        menuBar.add(menuAyuda);
+
+        // ========= PANEL PRINCIPAL =========
+        contentPane = new JPanel();
+        contentPane.setLayout(null);
+        setContentPane(contentPane);
+
+
+        // ========= IMAGEN =========
+     // ===== IMAGEN GRANDE (FONDO) =====
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+
+        Image img = icon.getImage().getScaledInstance(
+                getWidth(), 
+                getHeight() - 60,   // resta la barra de menú
+                Image.SCALE_SMOOTH
+        );
+
+        JLabel lblFondo = new JLabel(new ImageIcon(img));
+        lblFondo.setBounds(0, 0, getWidth(), getHeight());
+        contentPane.add(lblFondo);
+    }
+}

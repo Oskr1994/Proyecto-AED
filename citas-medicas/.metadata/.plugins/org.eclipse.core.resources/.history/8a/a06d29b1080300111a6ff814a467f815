@@ -1,0 +1,50 @@
+package vista;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+public class frmMedico extends JFrame {
+
+    public frmMedico() {
+        setTitle("Mantenimiento de Médico");
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLayout(null);
+
+        JLabel lblCmp = new JLabel("CMP:");
+        lblCmp.setBounds(20, 20, 80, 25);
+        add(lblCmp);
+
+        JTextField txtCmp = new JTextField();
+        txtCmp.setBounds(100, 20, 150, 25);
+        add(txtCmp);
+
+        JLabel lblNombre = new JLabel("Nombre:");
+        lblNombre.setBounds(20, 55, 80, 25);
+        add(lblNombre);
+
+        JTextField txtNombre = new JTextField();
+        txtNombre.setBounds(100, 55, 250, 25);
+        add(txtNombre);
+
+        JButton btnAgregar = new JButton("Adicionar");
+        btnAgregar.setBounds(20, 100, 100, 30);
+        add(btnAgregar);
+
+        JButton btnModificar = new JButton("Modificar");
+        btnModificar.setBounds(130, 100, 100, 30);
+        add(btnModificar);
+
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.setBounds(240, 100, 100, 30);
+        add(btnEliminar);
+
+        JTable tabla = new JTable(new DefaultTableModel(
+                new Object[]{"Código", "CMP", "Nombre", "Estado"}, 0
+        ));
+        JScrollPane sp = new JScrollPane(tabla);
+        sp.setBounds(20, 150, 540, 180);
+        add(sp);
+    }
+}

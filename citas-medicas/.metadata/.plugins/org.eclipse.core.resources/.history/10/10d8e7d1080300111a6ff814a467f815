@@ -1,0 +1,53 @@
+package vista;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
+public class frmPaciente extends JFrame {
+
+    public frmPaciente() {
+        setTitle("Mantenimiento de Paciente");
+        setSize(600, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(null);
+
+        JLabel lblDni = new JLabel("DNI:");
+        lblDni.setBounds(20, 20, 80, 25);
+        add(lblDni);
+
+        JTextField txtDni = new JTextField();
+        txtDni.setBounds(100, 20, 150, 25);
+        add(txtDni);
+
+        JLabel lblNombre = new JLabel("Nombre:");
+        lblNombre.setBounds(20, 55, 80, 25);
+        add(lblNombre);
+
+        JTextField txtNombre = new JTextField();
+        txtNombre.setBounds(100, 55, 250, 25);
+        add(txtNombre);
+
+        JButton btnAgregar = new JButton("Adicionar");
+        btnAgregar.setBounds(20, 100, 100, 30);
+        add(btnAgregar);
+
+        JButton btnModificar = new JButton("Modificar");
+        btnModificar.setBounds(130, 100, 100, 30);
+        add(btnModificar);
+
+        JButton btnEliminar = new JButton("Eliminar");
+        btnEliminar.setBounds(240, 100, 100, 30);
+        add(btnEliminar);
+
+        // TABLA
+        String[] columnas = {"Código", "DNI", "Nombre", "Estado"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        JTable tabla = new JTable(modelo);
+
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBounds(20, 150, 540, 180);
+        add(scroll);
+    }
+}

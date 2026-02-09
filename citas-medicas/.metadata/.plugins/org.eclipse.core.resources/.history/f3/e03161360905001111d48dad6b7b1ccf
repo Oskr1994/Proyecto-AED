@@ -1,0 +1,22 @@
+package vista;
+
+import javax.swing.*;
+
+public class frmAyuda extends JFrame {
+
+    public frmAyuda() {
+        setTitle("Ayuda");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        JTextArea txt = new JTextArea(
+                "Sistema de Citas Médicas\n\n" +
+                "Integrantes:\n" +
+                "- Alumno 1\n- Alumno 2\n\n" +
+                "Curso: Algoritmos y Estructura de Datos"
+        );
+        txt.setEditable(false);
+        add(new JScrollPane(txt));
+    }
+}

@@ -1,0 +1,22 @@
+package modelo;
+
+public class Paciente {
+    private int codigo;
+    private String dni;
+    private String nombre;
+    private int estado; // 1 activo, 0 inactivo
+
+    public Paciente(int codigo, String dni, String nombre, int estado) {
+        this.codigo = codigo;
+        this.dni = dni;
+        this.nombre = nombre;
+        this.estado = estado;
+    }
+
+	public Object getDni() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+    // getters y setters
+}

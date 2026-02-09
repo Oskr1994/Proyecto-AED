@@ -1,0 +1,90 @@
+package vista;
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
+public class frmMenuPrincipal extends JFrame {
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frmMenuPrincipal frame = new frmMenuPrincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	public frmMenuPrincipal() {
+		setTitle("SISTEMA DE CITAS MÉDICAS");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 350);
+
+		// ========= IMAGEN DE FONDO =========
+		ImageIcon icon = new ImageIcon("imagenes/fondo.jpg");
+		Image img = icon.getImage().getScaledInstance(450, 350, Image.SCALE_SMOOTH);
+		ImageIcon fondo = new ImageIcon(img);
+
+		JLabel lblFondo = new JLabel(fondo);
+		lblFondo.setBounds(0, 0, 450, 350);
+		setContentPane(lblFondo);
+		lblFondo.setLayout(null);
+		System.out.println(getClass().getResource("/imagenes/fondo.jpg"));
+		// ==================================
+		
+
+		JLabel lblTitulo = new JLabel("CLÍNICA SAN SALUD");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblTitulo.setBounds(110, 20, 260, 30);
+		lblFondo.add(lblTitulo);
+
+		JButton btnMantenimiento = new JButton("MANTENIMIENTO");
+		btnMantenimiento.setBounds(140, 70, 170, 30);
+		lblFondo.add(btnMantenimiento);
+
+		JButton btnRegistro = new JButton("REGISTRO DE CITAS");
+		btnRegistro.setBounds(140, 110, 170, 30);
+		lblFondo.add(btnRegistro);
+
+		JButton btnConsulta = new JButton("CONSULTAS");
+		btnConsulta.setBounds(140, 150, 170, 30);
+		lblFondo.add(btnConsulta);
+
+		JButton btnReporte = new JButton("REPORTES");
+		btnReporte.setBounds(140, 190, 170, 30);
+		lblFondo.add(btnReporte);
+
+		JButton btnAyuda = new JButton("AYUDA");
+		btnAyuda.setBounds(140, 230, 170, 30);
+		lblFondo.add(btnAyuda);
+
+		// EVENTOS (provisorios)
+		btnMantenimiento.addActionListener(e ->
+			System.out.println("Mantenimiento")
+		);
+
+		btnRegistro.addActionListener(e ->
+			System.out.println("Registro de citas")
+		);
+
+		btnConsulta.addActionListener(e ->
+			System.out.println("Consultas")
+		);
+
+		btnReporte.addActionListener(e ->
+			System.out.println("Reportes")
+		);
+
+		btnAyuda.addActionListener(e ->
+			System.out.println("Ayuda")
+		);
+	}
+}
