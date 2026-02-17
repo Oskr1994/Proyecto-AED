@@ -9,9 +9,9 @@ public class frmMenuPrincipal extends JFrame {
 
     public frmMenuPrincipal() {
         setTitle("Sistema de Citas Médicas");
-        setSize(712, 611);          // ventana mediana
-        setLocationRelativeTo(null); // centrada
-        setResizable(false);         // opcional
+        setSize(712, 611);
+        setLocationRelativeTo(null);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
@@ -53,13 +53,6 @@ public class frmMenuPrincipal extends JFrame {
         menuConsulta.add(itemConsultaCitas);
         menuReporte.add(itemReportes);
         menuAyuda.add(itemAyuda);
-        
-     
-        
-
-        itemAyuda.addActionListener(e ->
-            new frmAyuda().setVisible(true)
-        );
 
         // ================= PANEL FONDO =================
         JPanel panelFondo = new JPanel() {

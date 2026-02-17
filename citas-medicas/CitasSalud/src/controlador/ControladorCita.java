@@ -9,15 +9,15 @@ public class ControladorCita {
     private static int contador = 1;
 
     public static boolean registrar(Paciente p, Medico m,
-                                    Consultorio c,
-                                    String fecha, String hora,
-                                    String motivo) {
+            Consultorio c,
+            String fecha, String hora,
+            String motivo) {
 
         // validar doble cita
         for (Cita ct : citas) {
             if (ct.getFecha().equals(fecha)
-                && ct.getHora().equals(hora)
-                && (ct.getMedico() == m || ct.getConsultorio() == c)) {
+                    && ct.getHora().equals(hora)
+                    && (ct.getMedico() == m || ct.getConsultorio() == c)) {
                 return false;
             }
         }
@@ -29,5 +29,25 @@ public class ControladorCita {
 
     public static ArrayList<Cita> listar() {
         return citas;
+    }
+
+    public static boolean cancelarCita(int numCita) {
+        for (Cita cita : citas) {
+            if (cita.getNumCita() == numCita) {
+                cita.setEstado(2); // 2 = cancelada
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean marcarAtendida(int numCita) {
+        for (Cita cita : citas) {
+            if (cita.getNumCita() == numCita) {
+                cita.setEstado(1); // 1 = atendida
+                return true;
+            }
+        }
+        return false;
     }
 }

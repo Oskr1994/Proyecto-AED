@@ -11,8 +11,8 @@ public class Cita {
     private String motivo;
 
     public Cita(int numCita, Paciente paciente, Medico medico,
-                Consultorio consultorio, String fecha,
-                String hora, int estado, String motivo) {
+            Consultorio consultorio, String fecha,
+            String hora, int estado, String motivo) {
         this.numCita = numCita;
         this.paciente = paciente;
         this.medico = medico;
@@ -23,23 +23,45 @@ public class Cita {
         this.motivo = motivo;
     }
 
-	public Object getFecha() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    // GETTERS
+    public int getNumCita() {
+        return numCita;
+    }
 
-	public Object getHora() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Paciente getPaciente() {
+        return paciente;
+    }
 
-	public Medico getMedico() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Medico getMedico() {
+        return medico;
+    }
 
-	public Consultorio getConsultorio() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    // SETTERS
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 }

@@ -1,15 +1,13 @@
 package vista;
 
+import controlador.ControladorPaciente;
 import modelo.Paciente;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
 
 public class frmPaciente extends JFrame {
 
-    private ArrayList<Paciente> lista = new ArrayList<>();
-    private int contador = 1;
-
+    private static final long serialVersionUID = 1L;
     private JTextField txtDni, txtNombre;
     private JComboBox<String> cboEstado;
     private JTable tabla;
@@ -20,55 +18,58 @@ public class frmPaciente extends JFrame {
         setTitle("Mantenimiento de Paciente");
         setSize(600, 400);
         setLocationRelativeTo(null);
-        setLayout(null);
+        getContentPane().setLayout(null);
 
         // ===== CAMPOS =====
         JLabel lblDni = new JLabel("DNI:");
         lblDni.setBounds(20, 20, 80, 25);
-        add(lblDni);
+        getContentPane().add(lblDni);
 
         txtDni = new JTextField();
         txtDni.setBounds(100, 20, 150, 25);
-        add(txtDni);
+        getContentPane().add(txtDni);
 
         JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(20, 60, 80, 25);
-        add(lblNombre);
+        getContentPane().add(lblNombre);
 
         txtNombre = new JTextField();
         txtNombre.setBounds(100, 60, 200, 25);
-        add(txtNombre);
+        getContentPane().add(txtNombre);
 
         JLabel lblEstado = new JLabel("Estado:");
         lblEstado.setBounds(20, 100, 80, 25);
-        add(lblEstado);
+        getContentPane().add(lblEstado);
 
-        cboEstado = new JComboBox<>(new String[]{"Activo", "Inactivo"});
+        cboEstado = new JComboBox<>(new String[] { "Activo", "Inactivo" });
         cboEstado.setBounds(100, 100, 120, 25);
-        add(cboEstado);
+        getContentPane().add(cboEstado);
 
         // ===== BOTONES =====
         JButton btnAgregar = new JButton("Agregar");
         btnAgregar.setBounds(350, 20, 100, 25);
-        add(btnAgregar);
+        getContentPane().add(btnAgregar);
 
         JButton btnModificar = new JButton("Modificar");
         btnModificar.setBounds(350, 60, 100, 25);
-        add(btnModificar);
+        getContentPane().add(btnModificar);
 
         JButton btnEliminar = new JButton("Eliminar");
         btnEliminar.setBounds(350, 100, 100, 25);
-        add(btnEliminar);
+        getContentPane().add(btnEliminar);
+
+        JButton btnLimpiar = new JButton("Limpiar");
+        btnLimpiar.setBounds(460, 20, 100, 25);
+        getContentPane().add(btnLimpiar);
 
         // ===== TABLA =====
         modelo = new DefaultTableModel(
-            new String[]{"Código", "DNI", "Nombre", "Estado"}, 0
-        );
+                new String[] { "Código", "DNI", "Nombre", "Estado" }, 0);
 
         tabla = new JTable(modelo);
         JScrollPane scroll = new JScrollPane(tabla);
         scroll.setBounds(20, 150, 540, 180);
-        add(scroll);
+        getContentPane().add(scroll);
 
         // ===== EVENTOS =====
 
@@ -76,69 +77,93 @@ public class frmPaciente extends JFrame {
         btnAgregar.addActionListener(e -> {
             String dni = txtDni.getText();
             String nombre = txtNombre.getText();
-            int estado = cboEstado.getSelectedIndex() == 0 ? 1 : 0;
 
-            if (dni.isEmpty() || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Complete los campos");
-                return;
+            if (ControladorPaciente.agregar(dni, nombre)) {
+                JOptionPane.showMessageDialog(this, "Paciente agregado correctamente");
+                cargarTabla();
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error: DNI ya existe o campos vacíos");
             }
-
-            // validar DNI único
-            for (Paciente p : lista) {
-                if (p.getDni().equals(dni)) {
-                    JOptionPane.showMessageDialog(this, "DNI ya existe");
-                    return;
-                }
-            }
-
-            Paciente p = new Paciente(contador++, dni, nombre, estado);
-            lista.add(p);
-            cargarTabla();
-            limpiar();
         });
 
         // MODIFICAR
         btnModificar.addActionListener(e -> {
             int fila = tabla.getSelectedRow();
-            if (fila == -1) return;
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un paciente");
+                return;
+            }
 
-            Paciente p = lista.get(fila);
-            p.setNombre(txtNombre.getText());
-            p.setEstado(cboEstado.getSelectedIndex() == 0 ? 1 : 0);
-            cargarTabla();
+            String dni = (String) modelo.getValueAt(fila, 1);
+            String nuevoNombre = txtNombre.getText();
+            int nuevoEstado = cboEstado.getSelectedIndex() == 0 ? 1 : 0;
+
+            if (ControladorPaciente.modificar(dni, nuevoNombre, nuevoEstado)) {
+                JOptionPane.showMessageDialog(this, "Paciente modificado correctamente");
+                cargarTabla();
+                limpiar();
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar paciente");
+            }
         });
 
         // ELIMINAR
         btnEliminar.addActionListener(e -> {
             int fila = tabla.getSelectedRow();
-            if (fila == -1) return;
+            if (fila == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un paciente");
+                return;
+            }
 
-            lista.remove(fila);
-            cargarTabla();
-            limpiar();
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "¿Está seguro de eliminar este paciente?",
+                    "Confirmar",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (confirm == JOptionPane.YES_OPTION) {
+                String dni = (String) modelo.getValueAt(fila, 1);
+
+                if (ControladorPaciente.eliminar(dni)) {
+                    JOptionPane.showMessageDialog(this, "Paciente eliminado correctamente");
+                    cargarTabla();
+                    limpiar();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error al eliminar paciente");
+                }
+            }
         });
 
-        // CLICK TABLA
         tabla.getSelectionModel().addListSelectionListener(e -> {
             int fila = tabla.getSelectedRow();
             if (fila >= 0) {
-                Paciente p = lista.get(fila);
-                txtDni.setText(p.getDni());
-                txtNombre.setText(p.getNombre());
-                cboEstado.setSelectedIndex(p.getEstado() == 1 ? 0 : 1);
+                String dni = (String) modelo.getValueAt(fila, 1);
+                String nombre = (String) modelo.getValueAt(fila, 2);
+                String estadoStr = (String) modelo.getValueAt(fila, 3);
+
+                txtDni.setText(dni);
+                txtNombre.setText(nombre);
+                cboEstado.setSelectedIndex(estadoStr.equals("Activo") ? 0 : 1);
                 txtDni.setEditable(false);
             }
         });
+
+        // LIMPIAR
+        btnLimpiar.addActionListener(e -> {
+            limpiar();
+        });
+
+        cargarTabla();
     }
 
     private void cargarTabla() {
         modelo.setRowCount(0);
-        for (Paciente p : lista) {
-            modelo.addRow(new Object[]{
-                p.getCodigo(),
-                p.getDni(),
-                p.getNombre(),
-                p.getEstado() == 1 ? "Activo" : "Inactivo"
+        for (Paciente p : ControladorPaciente.listar()) {
+            modelo.addRow(new Object[] {
+                    p.getCodigo(),
+                    p.getDni(),
+                    p.getNombre(),
+                    p.getEstado() == 1 ? "Activo" : "Inactivo"
             });
         }
     }

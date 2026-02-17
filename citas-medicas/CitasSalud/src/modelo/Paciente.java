@@ -5,7 +5,7 @@ public class Paciente {
     private int codigo;
     private String dni;
     private String nombre;
-    private int estado; // 1 = Activo, 0 = Inactivo
+    private int estado;
 
     public Paciente(int codigo, String dni, String nombre, int estado) {
         this.codigo = codigo;
