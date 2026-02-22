@@ -4,19 +4,18 @@ import controlador.ControladorConsultorio;
 import modelo.Consultorio;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
-public class frmConsultorio extends JFrame {
-
-    private static final long serialVersionUID = 1L;
+public class frmConsultorio extends JDialog {
     private JTextField txtNombre;
     private JComboBox<String> cboEstado;
     private JTable tabla;
     private DefaultTableModel modelo;
 
-    public frmConsultorio() {
-        setTitle("Mantenimiento de Consultorio");
+    public frmConsultorio(Frame owner) {
+        super(owner, "Mantenimiento de Consultorio", true);
         setSize(600, 400);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 

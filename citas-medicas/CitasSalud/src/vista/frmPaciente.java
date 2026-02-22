@@ -4,20 +4,19 @@ import controlador.ControladorPaciente;
 import modelo.Paciente;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
-public class frmPaciente extends JFrame {
-
-    private static final long serialVersionUID = 1L;
+public class frmPaciente extends JDialog {
     private JTextField txtDni, txtNombre;
     private JComboBox<String> cboEstado;
     private JTable tabla;
     private DefaultTableModel modelo;
 
-    public frmPaciente() {
-
-        setTitle("Mantenimiento de Paciente");
+    public frmPaciente(Frame owner) {
+        super(owner, "Mantenimiento de Paciente", true);
         setSize(600, 400);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
         // ===== CAMPOS =====

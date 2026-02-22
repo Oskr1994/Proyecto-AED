@@ -10,9 +10,10 @@ import modelo.Consultorio;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
+import java.awt.Frame;
 import java.text.ParseException;
 
-public class frmRegistroCitas extends JFrame {
+public class frmRegistroCitas extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private JComboBox<String> cbPaciente;
@@ -23,10 +24,10 @@ public class frmRegistroCitas extends JFrame {
     private DefaultTableModel modeloTabla;
     private JTable tabla;
 
-    public frmRegistroCitas() {
-        setTitle("Registro de Citas");
+    public frmRegistroCitas(Frame owner) {
+        super(owner, "Registro de Citas", true);
         setSize(700, 420);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
@@ -59,13 +60,6 @@ public class frmRegistroCitas extends JFrame {
         });
         btnCancelarCita.setBounds(269, 117, 140, 35);
         getContentPane().add(btnCancelarCita);
-
-        JButton btnAtendida = new JButton("Marcar Atendida");
-        btnAtendida.addActionListener(e -> {
-            marcarAtendida();
-        });
-        btnAtendida.setBounds(419, 117, 140, 35);
-        getContentPane().add(btnAtendida);
 
         modeloTabla = new DefaultTableModel(
                 new Object[] { "N°", "Paciente", "Médico", "Fecha", "Hora", "Estado" }, 0);
@@ -245,20 +239,6 @@ public class frmRegistroCitas extends JFrame {
         int numCita = (int) modeloTabla.getValueAt(fila, 0);
         if (ControladorCita.cancelarCita(numCita)) {
             JOptionPane.showMessageDialog(this, "Cita cancelada");
-            cargarTabla();
-        }
-    }
-
-    private void marcarAtendida() {
-        int fila = tabla.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione una cita");
-            return;
-        }
-
-        int numCita = (int) modeloTabla.getValueAt(fila, 0);
-        if (ControladorCita.marcarAtendida(numCita)) {
-            JOptionPane.showMessageDialog(this, "Cita marcada como atendida");
             cargarTabla();
         }
     }

@@ -4,19 +4,18 @@ import controlador.ControladorMedico;
 import modelo.Medico;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Frame;
 
-public class frmMedico extends JFrame {
-
-    private static final long serialVersionUID = 1L;
+public class frmMedico extends JDialog {
     private JTextField txtCmp, txtNombre;
     private JComboBox<String> cboEstado;
     private JTable tabla;
     private DefaultTableModel modelo;
 
-    public frmMedico() {
-        setTitle("Mantenimiento de Médico");
+    public frmMedico(Frame owner) {
+        super(owner, "Mantenimiento de Médico", true);
         setSize(600, 400);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(owner);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 

@@ -7,6 +7,9 @@ public class frmMenuPrincipal extends JFrame {
 
     private JLabel lblFondo;
 
+    public static int ventanaPaciente = 0, ventanaMedico = 0, ventanaConsultorio = 0, ventanaRegistroCitas = 0,
+            ventanaConsultaCitas = 0, ventanaReporteCitas = 0, ventanaAyuda = 0;
+
     public frmMenuPrincipal() {
         setTitle("Sistema de Citas Médicas");
         setSize(712, 611);
@@ -44,7 +47,6 @@ public class frmMenuPrincipal extends JFrame {
 
         JMenuItem itemAyuda = new JMenuItem("Información");
 
-        // Agregar submenús
         menuMantenimiento.add(itemPaciente);
         menuMantenimiento.add(itemMedico);
         menuMantenimiento.add(itemConsultorio);
@@ -54,23 +56,20 @@ public class frmMenuPrincipal extends JFrame {
         menuReporte.add(itemReportes);
         menuAyuda.add(itemAyuda);
 
-        // ================= PANEL FONDO =================
         JPanel panelFondo = new JPanel() {
             Image fondo = new ImageIcon(
-                getClass().getResource("/imagenes/fondo.jpg")
-            ).getImage();
+                    getClass().getResource("/imagenes/fondo.jpg")).getImage();
 
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(
-                    fondo,
-                    0,
-                    0,
-                    getWidth(),
-                    getHeight(),
-                    this
-                );
+                        fondo,
+                        0,
+                        0,
+                        getWidth(),
+                        getHeight(),
+                        this);
             }
         };
 
@@ -78,33 +77,19 @@ public class frmMenuPrincipal extends JFrame {
         getContentPane().add(panelFondo, BorderLayout.CENTER);
 
         // ================= EVENTOS =================
-        itemPaciente.addActionListener(e ->
-            new frmPaciente().setVisible(true)
-        );
+        itemPaciente.addActionListener(e -> new frmPaciente(this).setVisible(true));
 
-        itemMedico.addActionListener(e ->
-            new frmMedico().setVisible(true)
-        );
+        itemMedico.addActionListener(e -> new frmMedico(this).setVisible(true));
 
-        itemConsultorio.addActionListener(e ->
-            new frmConsultorio().setVisible(true)
-        );
+        itemConsultorio.addActionListener(e -> new frmConsultorio(this).setVisible(true));
 
-        itemRegistroCitas.addActionListener(e ->
-            new frmRegistroCitas().setVisible(true)
-        );
+        itemRegistroCitas.addActionListener(e -> new frmRegistroCitas(this).setVisible(true));
 
-        itemConsultaCitas.addActionListener(e ->
-            new frmConsultaCitas().setVisible(true)
-        );
+        itemConsultaCitas.addActionListener(e -> new frmConsultaCitas(this).setVisible(true));
 
-        itemReportes.addActionListener(e ->
-            new frmReporteCitas().setVisible(true)
-        );
+        itemReportes.addActionListener(e -> new frmReporteCitas(this).setVisible(true));
 
-        itemAyuda.addActionListener(e ->
-            new frmAyuda().setVisible(true)
-        );
+        itemAyuda.addActionListener(e -> new frmAyuda(this).setVisible(true));
     }
 
     public static void main(String[] args) {
