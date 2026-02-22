@@ -14,7 +14,7 @@ public class frmAyuda extends JFrame {
         getContentPane().setLayout(null);
         
         JTextArea txtrSistemaDeCitas = new JTextArea();
-        txtrSistemaDeCitas.setText("Curso: Algoritmos y Estructura de Datos\r\nInstituto: CIBERTEC\r\n\r\nIntegrantes:\r\n- Oscar Enrique Perez Alvarez\r\n- Bily Rodrigo Quinto Becerra\r\n-\r\n-\r\n-\r\n");
+        txtrSistemaDeCitas.setText("Curso: Algoritmos y Estructura de Datos\r\nInstituto: CIBERTEC\r\n\r\nIntegrantes:\r\n- Oscar Enrique Perez Alvarez\r\n- Bily Rodrigo Quinto Becerra\r\n- Ivan Bray Vasquez Cabanillas\r\n- Kevin Ronald Gradados Condori\r\n- Jose Wislly Zafra Alcantara");
         txtrSistemaDeCitas.setBounds(10, 67, 364, 194);
         getContentPane().add(txtrSistemaDeCitas);
         
