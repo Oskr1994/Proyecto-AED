@@ -1,0 +1,2 @@
+301|Policlinico Belen|2|Av. Jose Galvez 1285|20|1
+302|Policlinico Belen II|2|Av Jose Pardo 1125|20|1

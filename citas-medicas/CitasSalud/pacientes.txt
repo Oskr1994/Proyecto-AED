@@ -1,0 +1,3 @@
+1001|Luis|Calderon|33333333|29|999888777|lcalderon@gmail.com|1
+1002|Andres|Pareja|11223344|35|999111000|apareja@gmail.com|1
+1003|yo|mismo|123245|12|98632588||1
