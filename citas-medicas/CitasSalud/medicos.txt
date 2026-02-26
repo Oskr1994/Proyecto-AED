@@ -1,2 +1,3 @@
 501|Carla|Romero|Pediatria|250101|1
 502|Johana|Pereda|Endocrinologia|250102|1
+503|medico|apellido|cardiologo|123456|1

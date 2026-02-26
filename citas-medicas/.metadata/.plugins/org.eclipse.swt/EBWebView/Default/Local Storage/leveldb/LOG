@@ -1,2 +1,3 @@
-2026/02/23-18:31:30.707 49d4 Creating DB C:\Users\Oscar Dev\Documents\GitHub\Proyecto AED\Proyecto-AED\citas-medicas\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
-2026/02/23-18:31:30.724 49d4 Reusing MANIFEST C:\Users\Oscar Dev\Documents\GitHub\Proyecto AED\Proyecto-AED\citas-medicas\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/23-19:38:52.291 58c8 Reusing MANIFEST C:\Users\Oscar Dev\Documents\GitHub\Proyecto AED\Proyecto-AED\citas-medicas\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2026/02/23-19:38:52.297 58c8 Recovering log #3
+2026/02/23-19:38:52.298 58c8 Reusing old log C:\Users\Oscar Dev\Documents\GitHub\Proyecto AED\Proyecto-AED\citas-medicas\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
